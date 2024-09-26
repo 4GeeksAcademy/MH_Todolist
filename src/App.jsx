@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import ListaDeTareas from './componentes/todolist';
+import TodoList from './componentes/todolist';
 
 function App() {
     return (
-        <ListaDeTareas />
+        <TodoList />
     );
 }
 

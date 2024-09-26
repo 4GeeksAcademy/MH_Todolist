@@ -1,45 +1,45 @@
 import React, { useState } from "react";
 
-const ListaDeTareas = () => {
-    const [tareaInput, setTareaInput] = useState("");
-    const [tareas, setTareas] = useState([]);
+const TodoList = () => {
+    const [taskInput, setTaskInput] = useState("");
+    const [taskArray, setTaskArray] = useState([]);
 
-    const agregarTarea = (tecla) => {
-        if (tecla === "Enter") {
-            if (tareaInput !== "") {
-                setTareas((prevTareas) => [...prevTareas, tareaInput]);
-                setTareaInput("");
+    const addTask = (key) => {
+        if (key === "Enter") {
+            if (taskInput !== "") {
+                setTaskArray((prevTasks) => [...prevTasks, taskInput]);
+                setTaskInput("");
             } else {
-                alert("Por favor, ingresa una tarea.");
+                alert("Please enter a task.");
             }
         }
     };
 
-    const eliminarTarea = (indice) => {
-        setTareas((prevTareas) =>
-            prevTareas.filter((_, i) => i !== indice)
+    const removeTask = (index) => {
+        setTaskArray((prevTasks) =>
+            prevTasks.filter((_, i) => i !== index)
         );
     };
 
     return (
-        <div className="contenedor">
-            <h1>Lista de Tareas</h1>
+        <div className="container">
+            <h1>todos</h1>
             <input
                 type="text"
-                id="tarea"
-                placeholder="¿Qué necesitas hacer?"
-                onChange={(e) => setTareaInput(e.target.value)}
-                onKeyDown={(e) => agregarTarea(e.key)}
-                value={tareaInput}
+                id="task"
+                placeholder="What do you need to do?"
+                onChange={(e) => setTaskInput(e.target.value)}
+                onKeyDown={(e) => addTask(e.key)}
+                value={taskInput}
             />
-            {tareas.length === 0 ? (
-                <p>No hay tareas agregadas</p>
+            {taskArray.length === 0 ? (
+                <p>No tasks added</p>
             ) : (
                 <ol>
-                    {tareas.map((tarea, indice) => (
-                        <li key={indice}>
-                            {tarea}
-                            <span onClick={() => eliminarTarea(indice)}> X </span>
+                    {taskArray.map((task, index) => (
+                        <li key={index}>
+                            {task}
+                            <span className="delete-icon" onClick={() => removeTask(index)}> ✖ </span>
                         </li>
                     ))}
                 </ol>
@@ -48,4 +48,4 @@ const ListaDeTareas = () => {
     );
 };
 
-export default ListaDeTareas;
+export default TodoList;
