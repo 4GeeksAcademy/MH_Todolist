@@ -1,45 +1,48 @@
 import React, { useState } from "react";
 
-const TodoList = () => {
-    const [taskInput, setTaskInput] = useState("");
-    const [taskArray, setTaskArray] = useState([]);
+const TaskList = () => {
+    const [inputValue, setInputValue] = useState("");
+    const [tasks, setTasks] = useState([]);
 
-    const addTask = (key) => {
-        if (key === "Enter") {
-            if (taskInput !== "") {
-                setTaskArray((prevTasks) => [...prevTasks, taskInput]);
-                setTaskInput("");
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            if (inputValue.trim()) {
+                setTasks((prevTasks) => [...prevTasks, inputValue.trim()]);
+                setInputValue("");
             } else {
                 alert("Please enter a task.");
             }
         }
     };
 
-    const removeTask = (index) => {
-        setTaskArray((prevTasks) =>
-            prevTasks.filter((_, i) => i !== index)
-        );
+    const removeTask = (taskIndex) => {
+        setTasks((prevTasks) => prevTasks.filter((_, index) => index !== taskIndex));
     };
 
     return (
         <div className="container">
-            <h1>todos</h1>
+            <h1>Task List</h1>
             <input
                 type="text"
-                id="task"
                 placeholder="What do you need to do?"
-                onChange={(e) => setTaskInput(e.target.value)}
-                onKeyDown={(e) => addTask(e.key)}
-                value={taskInput}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyPress}
+                value={inputValue}
             />
-            {taskArray.length === 0 ? (
+            {tasks.length === 0 ? (
                 <p>No tasks added</p>
             ) : (
                 <ol>
-                    {taskArray.map((task, index) => (
+                    {tasks.map((task, index) => (
                         <li key={index}>
                             {task}
-                            <span className="delete-icon" onClick={() => removeTask(index)}> ✖ </span>
+                            <span 
+                                className="delete-icon" 
+                                onMouseEnter={() => removeTask(index)} 
+                                style={{ cursor: 'pointer' }} 
+                            >
+                                ✖
+                            </span>
                         </li>
                     ))}
                 </ol>
@@ -48,4 +51,4 @@ const TodoList = () => {
     );
 };
 
-export default TodoList;
+export default TaskList;
