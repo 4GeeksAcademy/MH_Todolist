@@ -1,44 +1,44 @@
 import React, { useState } from "react";
 
-const TaskList = () => {
-    const [inputValue, setInputValue] = useState("");
-    const [tasks, setTasks] = useState([]);
+const RegistroDeTareas = () => {
+    const [valorInput, setValorInput] = useState("");
+    const [tareas, setTareas] = useState([]);
 
-    const handleKeyPress = (event) => {
-        if (event.key === "Enter") {
-            if (inputValue.trim()) {
-                setTasks((prevTasks) => [...prevTasks, inputValue.trim()]);
-                setInputValue("");
+    const manejarPresionTecla = (evento) => {
+        if (evento.key === "Enter") {
+            if (valorInput.trim()) {
+                setTareas((tareasPrevias) => [...tareasPrevias, valorInput.trim()]);
+                setValorInput("");
             } else {
-                alert("Please enter a task.");
+                alert("Por favor, ingresa una tarea.");
             }
         }
     };
 
-    const removeTask = (taskIndex) => {
-        setTasks((prevTasks) => prevTasks.filter((_, index) => index !== taskIndex));
+    const eliminarTarea = (indiceTarea) => {
+        setTareas((tareasPrevias) => tareasPrevias.filter((_, indice) => indice !== indiceTarea));
     };
 
     return (
-        <div className="container">
-            <h1>Task List</h1>
+        <div className="contenedor">
+            <h1>Registro de Tareas</h1>
             <input
                 type="text"
-                placeholder="What do you need to do?"
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyPress}
-                value={inputValue}
+                placeholder="¿Qué necesitas hacer?"
+                onChange={(e) => setValorInput(e.target.value)}
+                onKeyDown={manejarPresionTecla}
+                value={valorInput}
             />
-            {tasks.length === 0 ? (
-                <p>No tasks added</p>
+            {tareas.length === 0 ? (
+                <p>No hay tareas agregadas</p>
             ) : (
                 <ol>
-                    {tasks.map((task, index) => (
-                        <li key={index}>
-                            {task}
+                    {tareas.map((tarea, indice) => (
+                        <li key={indice}>
+                            {tarea}
                             <span 
                                 className="delete-icon" 
-                                onMouseEnter={() => removeTask(index)} 
+                                onMouseEnter={() => eliminarTarea(indice)} 
                                 style={{ cursor: 'pointer' }} 
                             >
                                 ✖
@@ -51,4 +51,4 @@ const TaskList = () => {
     );
 };
 
-export default TaskList;
+export default RegistroDeTareas;
