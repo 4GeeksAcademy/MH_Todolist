@@ -1,6 +1,6 @@
 body {
-  font-family: 'Verdana', sans-serif;
-  background-color: #282c34;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f4f4f4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,60 +10,78 @@ body {
 
 .contenedor {
   background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;  
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  width: 100%;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  width: 90%;
   text-align: center;
+  transition: transform 0.2s;
+}
+
+.contenedor:hover {
+  transform: scale(1.02);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
 input[type="text"] {
-  padding: 10px;
-  width: 85%;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 12px;
+  width: 90%;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  font-size: 18px;
   margin-bottom: 20px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="text"]:focus {
-  border-color: #007bff;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
 
 ol {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
-  background-color: #f0f0f0;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: #e9ecef;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
   font-size: 18px;
-  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 li:hover {
-  background-color: #007bff;
+  background-color: #0056b3;
   color: #ffffff;
+  transform: translateY(-2px);
 }
 
 p {
   font-size: 16px;
-  color: #666;
+  color: #888;
 }
 
 span {
-  color: red;
-  margin-left: 10px;
+  color: #dc3545;
+  margin-left: 15px;
   cursor: pointer;
   font-weight: bold;
+  transition: color 0.3s;
 }
 
 span:hover {
-  color: darkred;
+  color: #c82333;
 }
